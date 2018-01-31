@@ -102,20 +102,6 @@ class PageIndicatorViewController: UIViewController {
         
     }
     
-    /*
-     -(void)drawRect:(CGRect)frame
-     {
-     UIBezierPath* ovalPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(frame) + 2, CGRectGetMinY(frame) + 2.5, CGRectGetWidth(frame) - 5, CGRectGetHeight(frame) - 5)];
-     [UIColor.redColor setStroke];
-     ovalPath.lineWidth = 1;
-     [ovalPath stroke];
-     
-     UIBezierPath* oval2Path = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(CGRectGetMinX(frame) + 10, CGRectGetMinY(frame) + 10, CGRectGetWidth(frame) - 20, CGRectGetHeight(frame) - 20)];
-     [UIColor.lightGrayColor setFill];
-     [oval2Path fill];
-     }
-     */
-    
 }
 
 // MARK: - Public Functions
