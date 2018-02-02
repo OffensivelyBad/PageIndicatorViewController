@@ -1,9 +1,7 @@
 //
-//  TSPageIndicatorViewController.swift
-//  iWMS 2
+//  PageIndicatorViewController.swift
 //
 //  Created by Shawn Roller on 1/30/18.
-//  Copyright © 2018 JustFab. All rights reserved.
 //
 
 import UIKit
@@ -102,6 +100,29 @@ class PageIndicatorViewController: UIViewController {
         
     }
     
+    fileprivate func moveSelector(to point: CGPoint, color: CGColor) {
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            self.selectorView.center = point
+            self.selectorView.layer.borderColor = color
+            self.selectorView.layer.backgroundColor = color
+        }) { (_) in
+            self.setPageAlphas()
+        }
+    }
+    
+    fileprivate func setPageAlphas() {
+        
+        for (index, page) in self.stackView.arrangedSubviews.enumerated() {
+            if index <= self.currentPageIndex {
+                page.alpha = 1
+            }
+            else {
+                page.alpha = 0.25
+            }
+        }
+        
+    }
+    
 }
 
 // MARK: - Public Functions
@@ -136,21 +157,17 @@ extension PageIndicatorViewController {
         // Ensure the subview frames are set
         self.stackView.layoutIfNeeded()
         
+        // Ensure the previous pages are full alpha, and proceeding pages are dimmed
+        setPageAlphas()
+        
         // Get the mid point of the page indicator view
         let view = self.stackView.arrangedSubviews[page]
         let x = view.frame.midX
         let y = view.frame.midY
         let color = self.indicatorColors[page].cgColor
-        
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-            self.selectorView.center = CGPoint(x: x, y: y)
-            self.selectorView.layer.borderColor = color
-            self.selectorView.layer.backgroundColor = color
-        }) { (_) in
-            
-        }
+        let point = CGPoint(x: x, y: y)
+        moveSelector(to: point, color: color)
         
     }
     
 }
-
