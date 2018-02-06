@@ -154,6 +154,9 @@ extension PageIndicatorViewController {
         
         guard page < self.stackView.arrangedSubviews.count else { return }
         
+        // Set the page index
+        self.currentPageIndex = page
+        
         // Ensure the subview frames are set
         self.stackView.layoutIfNeeded()
         
@@ -171,3 +174,4 @@ extension PageIndicatorViewController {
     }
     
 }
+
