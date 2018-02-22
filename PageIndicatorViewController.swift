@@ -24,7 +24,7 @@ class PageIndicatorViewController: UIViewController {
         self.init()
         self.pages = pages
         self.currentPageIndex = initialPageIndex
-        if let colors = indicatorColors, colors.count == pages {
+        if let colors = indicatorColors, colors.count >= pages {
             self.indicatorColors = colors
         } else {
             // Set the indicator colors to white by default
